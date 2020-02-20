@@ -73,12 +73,12 @@ for cadet in range(numCadets):
 
 			#Checks if class is a double period or not
 			classPeriods = aggregateClassData[3].split('-')
-			classSections[classPeriods[0][1:-1]] = classPeriods[0][-1]
+			classSections[classPeriods[0][1:-1]] = classPeriods[0]
 			classPeriods[0] = classPeriods[0][1:-1]
 
 			#Attaches a section marker to the second period if there is a second period
 			try:
-				classSections[classPeriods[1][:-1]] = classPeriods[1][-1]
+				classSections[classPeriods[1][:-1]] = classPeriods[1]
 				classPeriods[1] = classPeriods[1][:-1]
 			except:
 				pass
@@ -129,11 +129,11 @@ for cadet in range(numCadets):
 				cadetScheduleDataRefined.loc[cadet, classPeriod] = ""
 
 				for subClass in cadetScheduleDict[classPeriod]:
-					cadetScheduleDataRefined.loc[cadet, classPeriod] = cadetScheduleDataRefined.loc[cadet, classPeriod] + subClass[0] + classSections[classPeriod]
+					cadetScheduleDataRefined.loc[cadet, classPeriod] = cadetScheduleDataRefined.loc[cadet, classPeriod] + subClass[0] + classSections[classPeriod] + '|'
 
 				classInstrPeriods.append([subClass[0] + classSections[classPeriod], subClass[4].replace("\"",""), subClass[3]])
 
-				cadetScheduleDataRefined.loc[cadet, classPeriod] = cadetScheduleDataRefined.loc[cadet, classPeriod].rstrip('/')
+				cadetScheduleDataRefined.loc[cadet, classPeriod] = cadetScheduleDataRefined.loc[cadet, classPeriod].rstrip('|')
 
 				classSLCredit.append([subClass[0], subClass[1], subClass[2]])
 
